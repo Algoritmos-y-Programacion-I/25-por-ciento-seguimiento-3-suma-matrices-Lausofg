@@ -1,10 +1,10 @@
 package model;
 
 public class SalaCine {
-    private boolean[][] asientos; // Declaro
+    private boolean[][] asientos;
 
     public SalaCine(int filas, int asientosPorFila) {
-        this.asientos = new boolean[filas][asientosPorFila]; // Inicializo
+        this.asientos = new boolean[filas][asientosPorFila]; 
         poblarSala();
     }
 
@@ -19,9 +19,9 @@ public class SalaCine {
     public String reservarAsiento(int fila, int asiento) {
         if(!asientos[fila][asiento]) {
             asientos[fila][asiento] = true;
-            return "Asiento reservado exitosamente";
+            return "el asiento ha sido reservado exitosamente :D";
         } else {
-            return "Asiento ya está reservado, no se puede ocupar";
+            return "lo sentimos este haciento ya está reservado, no se puede ocupar :( ";
         }
     }
 

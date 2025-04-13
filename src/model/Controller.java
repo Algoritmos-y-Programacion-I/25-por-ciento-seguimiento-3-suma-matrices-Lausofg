@@ -5,17 +5,12 @@ import model.MatrizNumerica;
 
 
 public class Controller {
-
-    private SalaCine cinemark; // Declarando sala de cine
+ //aqui se  declara la  sala de cine
+    private SalaCine cinemark; 
     private MatrizNumerica matriz1;
     private MatrizNumerica matriz2;
 
-    /**
-     * Constructor de la clase Controller para inicializar 
-     *
-     * @pre No se requieren precondiciones específicas.
-     * @post Se crea una instancia de Controller 
-     */
+   
     public Controller() {
         matriz1 = new MatrizNumerica(2,2);
         matriz2 = new MatrizNumerica(2,2);

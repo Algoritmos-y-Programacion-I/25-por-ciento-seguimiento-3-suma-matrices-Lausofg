@@ -1,72 +1,61 @@
+
 package ui;
 
-import java.util.Scanner; // Importar Scanner
-import model.Controller;
-
+import java.util.Scanner;
+import model.MatrizNumerica;
 
 public class Executable {
 
-    //private Scanner reader;
-    private Controller cont;
-    private Scanner escaner; // Ponner Scanner como atributo
+    private Scanner escaner;
 
-    /**
-     * Constructor de la clase Executable para inicializar el lector de entrada y el
-     * controlador.
-     *
-     * @pre No se requieren precondiciones específicas.
-     * @post Se crea una instancia de Executable y se inicializan el lector de
-     *       entrada y el controlador.
-     */
+    //metodo Constructor
     public Executable() {
-        //reader = new Scanner(System.in);
-        cont = new Controller();
-        escaner = new Scanner(System.in); // Inicializar Scanner
+        escaner = new Scanner(System.in);
     }
 
-    /**
-     * Ejecuta el programa principal de gestión de colegios.
-     *
-     * @pre El método debe ser llamado dentro de un contexto válido.
-     * @post El programa se ejecuta y permite al usuario interactuar con las
-     *       opciones disponibles.
-     * @return void Este método no retorna ningún valor.
-     */
-
+    // Método principal que ayuda a ejecutar el  programa
     public void run() {
+        System.out.println("Bienvenido al programa de suma de matrices\n");
 
-        System.out.println("Inserte los numeros de la matriz 1: ");
-        for(int i = 0; i < 2; i++) {
-            for(int j = 0; j < 2; j++) {
-                System.out.println("Insertar dato en fila " + i + " y columna " + j + " : ");
+        // aqui pedimos las  dimensiones de las matrices :D
+        System.out.print("Ingrese el número de filas: ");
+        int filas = escaner.nextInt();
+
+        System.out.print("Ingrese el número de columnas: ");
+        int columnas = escaner.nextInt();
+
+        // Se crea y llenamos la primera matriz
+        System.out.println("\n--- Matriz 1 ---");
+        MatrizNumerica matriz1 = leerMatriz(filas, columnas, "Matriz 1");
+
+        // se hace lo mismo que en la primera matriz
+        System.out.println("\n--- Matriz 2 ---");
+        MatrizNumerica matriz2 = leerMatriz(filas, columnas, "Matriz 2");
+
+        // siguiente paso se  suma las dos matrices
+        MatrizNumerica suma = matriz1.sumar(matriz2);
+
+        //  para finalizr esta parte Imprimimos nuestro  resultado
+        System.out.println("\n--- Resultado de la suma ---");
+        suma.imprimirMatriz();
+    }
+
+   
+    private MatrizNumerica leerMatriz(int filas, int columnas, String nombre) {
+        MatrizNumerica matriz = new MatrizNumerica(filas, columnas);
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                System.out.print(nombre + " [" + i + "][" + j + "]: ");
                 int valor = escaner.nextInt();
-                escaner.nextLine();
-                cont.getMatriz1().insertarValor(i, j, valor);
+                matriz.insertarValor(i, j, valor);
             }
         }
-    
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                System.out.print(cont.getMatriz1().getMatriz()[i][j] + " ");
-            }
-            System.out.println();
-        }
-
+        return matriz;
     }
 
-    /**
-     * Método principal (main) para iniciar la ejecución del programa.
-     *
-     * @pre No se requieren precondiciones específicas.
-     * @post Se crea una instancia de Executable y se ejecuta el programa principal.
-     * @param args Los argumentos de la línea de comandos (no se utilizan en este
-     *             caso).
-     */
+    // usamos el método main que inicia la ejecución de nuestro programa
     public static void main(String[] args) {
-
-        Executable mainApp = new Executable();
-        mainApp.run();
-
+        Executable app = new Executable();
+        app.run();
     }
-
 }
